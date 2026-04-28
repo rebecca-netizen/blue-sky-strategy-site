@@ -654,10 +654,10 @@
   .work-header { margin-bottom: 5rem; }
   .work-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 4rem;
   }
-  .work-item {
+    .work-item {
     background: transparent;
     padding: 0;
     position: relative;
@@ -685,7 +685,7 @@
     font-size: 0.92rem;
     line-height: 1.7;
     color: var(--mist);
-    max-width: 320px;
+    max-width: 420px;
   }
 
   /* Contact */
@@ -844,6 +844,173 @@
     display: flex;
   }
 }
+
+
+  /* Consolidated responsive rules */
+  @media (max-width: 1100px) {
+    .team-grid,
+    .work-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body { cursor: auto; }
+    .cursor,
+    .cursor-ring { display: none; }
+
+    nav {
+      left: 0;
+      right: 0;
+      width: 100%;
+      padding: 1.25rem 1.5rem;
+      align-items: flex-start;
+    }
+
+    .nav-logo { height: 34px; }
+
+    .nav-toggle {
+      display: block;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.22);
+      color: var(--mist);
+      padding: 0.55rem 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 1.5rem;
+      left: auto;
+      background: rgba(6,14,26,0.96);
+      padding: 1rem;
+      flex-direction: column;
+      gap: 1rem;
+      border: 1px solid rgba(200,169,110,0.18);
+    }
+
+    .nav-links.active { display: flex; }
+
+    .hero-content,
+    .intro,
+    .services,
+    .campaigns,
+    .team,
+    .work,
+    .contact,
+    footer {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .hero-content { max-width: 100%; }
+
+    .hero-scroll {
+      left: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .intro,
+    .campaigns-inner,
+    .contact {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 3rem;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .services-grid,
+    .team-grid,
+    .work-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.5rem;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .service-card {
+      width: 100%;
+      padding: 2.5rem 1.6rem;
+      border-right: none;
+      border-bottom: 1px solid rgba(200,169,110,0.15);
+    }
+
+    .service-card:last-child { border-bottom: none; }
+
+    .campaign-panel {
+      width: 100%;
+      padding: 2rem 1.5rem;
+    }
+
+    .metric-row { grid-template-columns: 1fr; }
+
+    .work-item {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+    }
+
+    .work-desc { max-width: none; }
+
+    .contact {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+
+    .contact-right {
+      padding-top: 0;
+      width: 100%;
+    }
+
+    .contact-address {
+      border-left: 0;
+      border-top: 1px solid rgba(200,169,110,0.3);
+      padding-left: 0;
+      padding-top: 2rem;
+      margin-bottom: 0;
+      width: 100%;
+    }
+
+    .contact-address .addr-name { font-size: 1.8rem; }
+    .contact-address p { font-size: 1rem; line-height: 1.8; }
+
+    .button-row { width: 100%; }
+    .btn { width: 100%; }
+
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    footer p { line-height: 1.6; }
+  }
+
+  @media (max-width: 420px) {
+    .hero-title,
+    .section-title { word-break: normal; }
+
+    .service-name,
+    .platform-title { font-size: 2.3rem; }
+
+    .service-items li,
+    .campaign-points li { font-size: 0.92rem; }
+  }
+
 </style>
 </head>
 <body>
