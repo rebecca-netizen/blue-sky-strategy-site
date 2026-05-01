@@ -193,52 +193,88 @@ nav {
 }
 
 /* FEATURE */
-.insight-feature {
+.featured-insight {
+  padding: 7rem 0 7.5rem;
   border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 4.5rem 0;
-  margin-bottom: 5rem;
 }
 
-.insight-feature a {
+.featured-inner {
   display: grid;
-  grid-template-columns: 0.95fr 1.25fr;
-  gap: 5rem;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.featured-card {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 3.6rem;
   text-decoration: none;
   color: inherit;
+  box-shadow: 0 20px 60px rgba(20,37,54,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.insight-feature h3 {
+.featured-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 26px 70px rgba(20,37,54,0.09);
+}
+
+.featured-card h3 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.4rem, 5vw, 5.8rem);
-  line-height: 1.02;
+  font-size: clamp(3rem, 4.8vw, 5.3rem);
+  line-height: 1.03;
   font-weight: 300;
   letter-spacing: -0.03em;
   color: var(--sky);
+  margin-bottom: 2rem;
 }
 
-.insight-feature h3::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 1px;
-  background: var(--accent);
-  margin-top: 2rem;
-  opacity: 0.5;
+.featured-card h3 em {
+  color: var(--accent);
+  font-style: italic;
 }
 
-.insight-feature p {
-  font-size: 1.08rem;
+.featured-card p {
+  font-size: 1.05rem;
   line-height: 1.85;
   color: var(--muted);
-  max-width: 620px;
-  align-self: end;
+  max-width: 690px;
+  margin-bottom: 2.5rem;
 }
 
-.insight-feature a:hover h3 {
+.featured-card span {
+  display: inline-block;
+  color: var(--sky);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(200,169,110,0.55);
+  padding-bottom: 0.4rem;
+}
+
+.featured-card:hover span {
   color: var(--accent);
+  border-color: var(--accent);
 }
 
+@media (max-width: 1100px) {
+  .featured-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-insight {
+    padding: 5rem 0;
+  }
+
+  .featured-card {
+    padding: 2rem;
+  }
+}
 /* GRID / LIST */
 .insights-list {
   border-top: 1px solid var(--line);
@@ -514,14 +550,23 @@ footer img {
       <div class="divider"></div>
     </div>
 
-    <section class="insight-feature">
-      <a href="/insights/visibility-vs-influence.html">
-        <h3>Visibility is not influence</h3>
-        <p>
-          Most modern campaigns optimise for reach. But in political systems, outcomes are shaped by signals that carry weight — not content that is widely seen.
-        </p>
-      </a>
-    </section>
+<section class="featured-insight">
+  <div class="featured-inner">
+    <div>
+      <p class="section-label">Featured insight</p>
+      <h2 class="section-title">Selected<br><em>thinking</em></h2>
+      <div class="divider"></div>
+    </div>
+
+    <a class="featured-card" href="/insights/visibility-vs-influence.html">
+      <h3>Political pressure is becoming less visible — and more <em>effective</em></h3>
+      <p>
+        Campaigns are still often judged by reach, noise and public visibility. But the more interesting shift is happening elsewhere: in structured, direct pressure aimed at decision-makers.
+      </p>
+      <span>Read insight</span>
+    </a>
+  </div>
+</section>
 
     <section class="insights-list">
 
