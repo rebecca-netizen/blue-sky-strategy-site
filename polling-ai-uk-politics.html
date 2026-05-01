@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polling, artificial intelligence, and an unstable political landscape | Blue Sky Strategy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --sky: #0A1628;
+  --sky-mid: #0E2040;
+  --accent: #C8A96E;
+  --cream: #F4F1EB;
+  --panel: #FBFAF7;
+  --ink: #1D2934;
+  --muted: #66717D;
+  --mist: #8A9BB0;
+  --white: #FAFAF8;
+  --line: rgba(29,41,52,0.14);
+  --dark: #060E1A;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(6,14,26,0.9) 0%, transparent 100%);
+}
+
+.nav-logo {
+  height: 42px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.nav-links {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--mist);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.nav-toggle { display: none; }
+
+/* HERO */
+.article-hero {
+  position: relative;
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--sky);
+}
+
+.article-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 80%, rgba(14,32,64,0.8) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 110%, #0A2550 0%, var(--sky) 60%);
+}
+
+.article-hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+}
+
+.article-horizon-line {
+  position: absolute;
+  bottom: 24%;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent 5%, rgba(200,169,110,0.12) 30%, rgba(200,169,110,0.22) 50%, rgba(200,169,110,0.12) 70%, transparent 95%);
+}
+
+.article-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 4rem;
+  max-width: 1240px;
+}
+
+.article-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.article-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.8rem, 7vw, 7.4rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  max-width: 1080px;
+  color: var(--white);
+}
+
+.article-title em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ARTICLE LAYOUT */
+.article-wrap {
+  background: var(--cream);
+  padding: 6.5rem 2rem 7.5rem;
+}
+
+.article-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* BYLINE */
+.article-meta {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 1.4rem 0;
+  margin-bottom: 3.2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.author-name {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+.author-role {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.article-date {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  padding-top: 0.1rem;
+}
+
+/* STANDFIRST */
+.standfirst {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 300;
+  color: var(--sky);
+  margin-bottom: 4.2rem;
+}
+
+.standfirst em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* BODY */
+.article-body p {
+  font-size: 1.05rem;
+  line-height: 1.92;
+  color: var(--muted);
+  margin-bottom: 2.2rem;
+}
+
+.article-body p:first-of-type {
+  color: var(--ink);
+}
+
+/* PULL QUOTE */
+.pull-quote {
+  margin: 4.6rem 0;
+  padding: 0 0 0 2rem;
+  border-left: 1px solid var(--accent);
+}
+
+.pull-quote p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 300;
+  color: var(--sky);
+  margin: 0;
+}
+
+.pull-quote em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* FOOTER CTA */
+.article-footer {
+  margin-top: 5.5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.article-footer p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 620px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 0.95rem 1.25rem;
+  border: 1px solid rgba(200,169,110,0.6);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: var(--dark);
+  border-color: var(--accent);
+}
+
+/* FOOTER */
+footer {
+  padding: 3rem 4rem;
+  border-top: 1px solid rgba(200,169,110,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--sky);
+}
+
+footer p {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: rgba(138,155,176,0.5);
+}
+
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+footer img {
+  height: 28px;
+  filter: brightness(0) invert(1);
+  opacity: 0.35;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav {
+    padding: 1.25rem 1.5rem;
+    align-items: flex-start;
+  }
+
+  .nav-logo { height: 34px; }
+
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.22);
+    color: var(--mist);
+    padding: 0.55rem 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 1.5rem;
+    background: rgba(6,14,26,0.96);
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid rgba(200,169,110,0.18);
+  }
+
+  .nav-links.active { display: flex; }
+
+  .article-hero {
+    min-height: 74vh;
+  }
+
+  .article-hero-content {
+    padding: 0 1.5rem;
+  }
+
+  .article-title {
+    font-size: clamp(3.2rem, 14vw, 5.4rem);
+  }
+
+  .article-wrap {
+    padding: 4.5rem 1.5rem 5.5rem;
+  }
+
+  .article-meta {
+    display: block;
+  }
+
+  .article-date {
+    margin-top: 1rem;
+  }
+
+  .standfirst {
+    font-size: 2.1rem;
+    margin-bottom: 3rem;
+  }
+
+  .pull-quote {
+    padding-left: 1.3rem;
+    margin: 3.5rem 0;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  footer p { line-height: 1.6; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="https://blueskystrategy.co.uk/">
+    <img src="https://blueskystrategy.co.uk/images/logoadjustedbs.png" alt="Blue Sky Strategy" class="nav-logo">
+  </a>
+  <button class="nav-toggle">Menu</button>
+  <ul class="nav-links">
+    <li><a href="https://blueskystrategy.co.uk/#services">Services</a></li>
+    <li><a href="https://blueskystrategy.co.uk/#campaigns">Campaigns</a></li>
+    <li><a href="https://blueskystrategy.co.uk/#team">Team</a></li>
+    <li><a href="https://blueskystrategy.co.uk/#work">Work</a></li>
+    <li><a href="https://blueskystrategy.co.uk/#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="article-hero">
+  <div class="article-hero-bg"></div>
+  <div class="article-hero-grain"></div>
+  <div class="article-horizon-line"></div>
+
+ <div class="article-hero-content">
+    <p class="article-eyebrow">Campaign Insights · British Politics</p>
+    <h1 class="article-title">Polling, artificial intelligence, and an unstable <em>political landscape</em></h1>
+  </div>
+</section>
+
+<main class="article-wrap">
+  <article class="article-inner">
+
+    <div class="article-meta">
+      <div>
+        <p class="author-name">Rebecca Ryan</p>
+        <p class="author-role">Founder & Managing Director, Blue Sky Strategy</p>
+      </div>
+      <p class="article-date">April 2026</p>
+    </div>
+
+    <p class="standfirst">
+      British politics is becoming <em>more fragmented</em> and less predictable. As artificial intelligence increases the volume and variability of political communication, it raises a more immediate question: <em>how reliable</em> are the tools used to measure public opinion?
+    </p>
+
+    <div class="article-body">
+
+      <p>The current political landscape in Britain is unusually fluid. Electoral loyalties are weaker than they have been in previous cycles, new parties and movements are gaining traction, and voter behaviour appears more volatile. Support can shift quickly, often in response to short-term events, and does not always follow established patterns. Polling has always attempted to capture this movement. Its underlying assumption, however, is that while opinion changes, it does so within relatively stable structures—demographic groupings, turnout models and historical voting behaviour. Those assumptions are under increasing strain.</p>
+
+      <p>At the same time, the environment in which political opinion is formed is changing. The expansion of digital platforms has already increased the volume and speed of political communication. Artificial intelligence accelerates that process. Campaigns, parties and individuals can now generate large quantities of material quickly, respond continuously to events, and test multiple messages across different audiences in parallel. The result is not simply more information, but more variation. Narratives can emerge, evolve and dissipate within very short timeframes. For polling, this presents a structural challenge.</p>
+
+      <blockquote class="pull-quote">
+        <p>Polling remains essential—but it is <em>less reliable as a predictor</em> in a more volatile, high-volume information environment.</p>
+      </blockquote>
+
+      <p>Polling does not measure opinion in real time. It samples it. To do so effectively, it relies on the assumption that underlying preferences are sufficiently stable to be captured at discrete moments. When opinion is more volatile—or more context-dependent—that assumption becomes harder to sustain. Artificial intelligence contributes to this volatility, not by changing what people believe directly, but by increasing the range and frequency of stimuli to which they are exposed. In high-volume environments, opinion can become more responsive and less fixed.</p>
+
+      <p>This does not mean that polling becomes irrelevant. But it does mean that its outputs should be interpreted differently. Single polls, or even short-term trends, may reflect momentary reactions rather than settled views. Sudden shifts in polling data may say as much about the information environment as they do about underlying opinion. The distinction between signal and noise becomes harder to draw.</p>
+
+      <p>There is also a question of attribution. As communication becomes more abundant and more fragmented, it becomes more difficult to identify which messages—or which actors—are influencing opinion. Traditional polling does not capture these dynamics directly. It measures outcomes, not the pathways through which those outcomes are formed. Artificial intelligence complicates this further. When content can be produced and distributed at scale, often without clear attribution, the relationship between cause and effect becomes more opaque.</p>
+
+      <p>For political campaigns, this creates a more uncertain operating environment. Polling remains an essential tool. It provides a structured way of assessing public opinion and identifying broad movements. But it is less able to capture rapid fluctuations or to distinguish between durable shifts and temporary reactions. As a result, there is a risk of over-interpreting short-term data and adjusting strategy in response to signals that are, in effect, noise.</p>
+
+      <p>This does not suggest that polling is failing. It suggests that the conditions in which it operates are changing. In more stable political environments, polling can act as a reliable guide to underlying opinion. In more fragmented and fast-moving environments, it becomes one input among several—useful, but not definitive.</p>
+
+      <p>Artificial intelligence is not the sole driver of this change. Political fragmentation, media dynamics and broader social shifts all play a role. But it is an accelerant. By increasing the volume, speed and variability of communication, it contributes to a context in which opinion is more fluid and more difficult to measure with precision.</p>
+
+      <p>For those engaged in British politics, the implication is not to disregard polling, but to treat it with greater caution. It remains a valuable tool for understanding the landscape. It is less reliable as a predictor of how that landscape will evolve.</p>
+
+    </div>
+    <div class="article-footer">
+      <p>For conversations about campaign strategy, digital infrastructure or public affairs campaigns, contact Rebecca.</p>
+      <a href="mailto:rebecca@blueskystrategy.co.uk?subject=Campaign%20enquiry" class="btn">Get in touch</a>
+    </div>
+
+  </article>
+</main>
+
+<footer>
+  <img src="https://blueskystrategy.co.uk/images/logoadjustedbs.png" alt="Blue Sky Strategy">
+  <p>© 2026 Blue Sky Strategy Ltd · Westminster, London · <a href="https://blueskystrategy.co.uk/privacy-policies.html">Privacy</a></p>
+</footer>
+
+<script>
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', function () {
+    navLinks.classList.toggle('active');
+  });
+}
+</script>
+
+</body>
+</html>

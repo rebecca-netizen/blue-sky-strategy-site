@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What political campaigns can learn from modern digital marketing | Blue Sky Strategy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --sky: #0A1628;
+  --sky-mid: #0E2040;
+  --accent: #C8A96E;
+  --cream: #F4F1EB;
+  --panel: #FBFAF7;
+  --ink: #1D2934;
+  --muted: #66717D;
+  --mist: #8A9BB0;
+  --white: #FAFAF8;
+  --line: rgba(29,41,52,0.14);
+  --dark: #060E1A;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(6,14,26,0.9) 0%, transparent 100%);
+}
+
+.nav-logo {
+  height: 42px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.nav-links {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--mist);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.nav-toggle { display: none; }
+
+/* HERO */
+.article-hero {
+  position: relative;
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--sky);
+}
+
+.article-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 80%, rgba(14,32,64,0.8) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 110%, #0A2550 0%, var(--sky) 60%);
+}
+
+.article-hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+}
+
+.article-horizon-line {
+  position: absolute;
+  bottom: 24%;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent 5%, rgba(200,169,110,0.12) 30%, rgba(200,169,110,0.22) 50%, rgba(200,169,110,0.12) 70%, transparent 95%);
+}
+
+.article-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 4rem;
+  max-width: 1240px;
+}
+
+.article-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.article-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.8rem, 7vw, 7.4rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  max-width: 1080px;
+  color: var(--white);
+}
+
+.article-title em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ARTICLE LAYOUT */
+.article-wrap {
+  background: var(--cream);
+  padding: 6.5rem 2rem 7.5rem;
+}
+
+.article-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* BYLINE */
+.article-meta {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 1.4rem 0;
+  margin-bottom: 3.2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.author-name {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+.author-role {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.article-date {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  padding-top: 0.1rem;
+}
+
+/* STANDFIRST */
+.standfirst {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 300;
+  color: var(--sky);
+  margin-bottom: 4.2rem;
+}
+
+.standfirst em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* BODY */
+.article-body p {
+  font-size: 1.05rem;
+  line-height: 1.92;
+  color: var(--muted);
+  margin-bottom: 2.2rem;
+}
+
+.article-body p:first-of-type {
+  color: var(--ink);
+}
+
+.article-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.45;
+  margin: 3.7rem 0;
+}
+
+/* PULL QUOTE */
+.pull-quote {
+  margin: 4.6rem 0;
+  padding: 0 0 0 2rem;
+  border-left: 1px solid var(--accent);
+}
+
+.pull-quote p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 300;
+  color: var(--sky);
+  margin: 0;
+}
+
+.pull-quote em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* FOOTER CTA */
+.article-footer {
+  margin-top: 5.5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.article-footer p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 620px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 0.95rem 1.25rem;
+  border: 1px solid rgba(200,169,110,0.6);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: var(--dark);
+  border-color: var(--accent);
+}
+
+/* FOOTER */
+footer {
+  padding: 3rem 4rem;
+  border-top: 1px solid rgba(200,169,110,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--sky);
+}
+
+footer p {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: rgba(138,155,176,0.5);
+}
+
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+footer img {
+  height: 28px;
+  filter: brightness(0) invert(1);
+  opacity: 0.35;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav {
+    padding: 1.25rem 1.5rem;
+    align-items: flex-start;
+  }
+
+  .nav-logo { height: 34px; }
+
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.22);
+    color: var(--mist);
+    padding: 0.55rem 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 1.5rem;
+    background: rgba(6,14,26,0.96);
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid rgba(200,169,110,0.18);
+  }
+
+  .nav-links.active { display: flex; }
+
+  .article-hero {
+    min-height: 74vh;
+  }
+
+  .article-hero-content {
+    padding: 0 1.5rem;
+  }
+
+  .article-title {
+    font-size: clamp(3.2rem, 14vw, 5.4rem);
+  }
+
+  .article-wrap {
+    padding: 4.5rem 1.5rem 5.5rem;
+  }
+
+  .article-meta {
+    display: block;
+  }
+
+  .article-date {
+    margin-top: 1rem;
+  }
+
+  .standfirst {
+    font-size: 2.1rem;
+    margin-bottom: 3rem;
+  }
+
+  .pull-quote {
+    padding-left: 1.3rem;
+    margin: 3.5rem 0;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  footer p { line-height: 1.6; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="https://blueskystrategy.co.uk/">
+    <img src="https://blueskystrategy.co.uk/images/logoadjustedbs.png" alt="Blue Sky Strategy" class="nav-logo">
+  </a>
+  <button class="nav-toggle">Menu</button>
+  <ul class="nav-links">
+    <li><a href="https://blueskystrategy.co.uk/#services">Services</a></li>
+    <li><a href="https://blueskystrategy.co.uk/#campaigns">Campaigns</a></li>
+    <li><a href="https://blueskystrategy.co.uk/#team">Team</a></li>
+    <li><a href="https://blueskystrategy.co.uk/#work">Work</a></li>
+    <li><a href="https://blueskystrategy.co.uk/#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="article-hero">
+  <div class="article-hero-bg"></div>
+  <div class="article-hero-grain"></div>
+  <div class="article-horizon-line"></div>
+
+  <div class="article-hero-content">
+    <p class="article-eyebrow">Campaign Insights · Political Strategy</p>
+    <h1 class="article-title">What political campaigns can learn from modern <em>digital marketing</em></h1>
+  </div>
+</section>
+
+<main class="article-wrap">
+  <article class="article-inner">
+
+    <div class="article-meta">
+      <div>
+        <p class="author-name">Rebecca Ryan</p>
+        <p class="author-role">Founder & Managing Director, Blue Sky Strategy</p>
+      </div>
+      <p class="article-date">May 2026</p>
+    </div>
+
+    <p class="standfirst">
+      Political communication has expanded dramatically in scale. Yet the mechanisms through which decisions are made—particularly in Westminster—remain far more stable. The result is a widening gap between <em>visibility</em> and influence.
+    </p>
+
+    <div class="article-body">
+
+  <p>Over the past decade, the volume of political communication has increased dramatically. Across major democracies, election cycles now generate a continuous flow of digital content, targeted messaging and real-time response. In the United States, digital political advertising has reached record levels. Across Europe, parties and advocacy groups now operate always-on digital campaigns that extend well beyond formal election periods. This expansion is often taken as evidence that politics has adapted to the digital environment. In one sense, it has: campaigns now operate at a scale and speed that would have been difficult to sustain even a decade ago. In another sense, however, the underlying dynamics of political decision-making have changed far less than is sometimes assumed.</p>
+
+  <p>This is particularly evident in Westminster. British politics remains, at its core, highly structured. Parliamentary majorities, party discipline, constituency relationships and ministerial priorities continue to shape outcomes in ways that are relatively insulated from fluctuations in online attention. While public discourse has become more fragmented and more immediate, the mechanisms through which decisions are made remain comparatively stable. Ministers do not respond to volume in the abstract. They respond to signals that carry political weight: pressure within their own party, activity within constituencies, coordinated interventions from stakeholders, and evidence of organised support or opposition. Those signals are not always the most visible ones.</p>
+
+  <blockquote class="pull-quote">
+    <p>Campaigns can dominate online conversation without materially affecting outcomes in <em>Parliament</em>.</p>
+  </blockquote>
+
+  <p>There is, therefore, a growing gap between the scale of political communication and the channels through which influence is actually exercised. In the UK, it is now routine for campaigns to generate substantial online reach—hundreds of thousands, or even millions, of impressions—around a particular issue. Parliamentary petitions can attract large numbers of signatures, and social media campaigns can dominate short-term news cycles. Yet these forms of activity do not consistently translate into legislative or policy change. At the same time, more targeted forms of pressure—constituency-level engagement, coordinated correspondence, or sustained advocacy within Westminster—continue to exert a disproportionate influence relative to their visibility. The relationship between attention and impact is not straightforward.</p>
+
+  <p>It is in this context that developments in digital marketing become relevant. Over roughly the same period, commercial digital activity has moved away from treating visibility as a proxy for success. Metrics such as reach and engagement, while still tracked, are no longer taken as sufficient indicators of effectiveness. Instead, marketing systems have been reorganised around the measurement of behaviour: whether individuals take specific actions, move through defined processes, or demonstrate forms of commitment that can be observed. The underlying shift is from attention as an endpoint to attention as an input.</p>
+
+  <p>Political campaigning has adopted many of the same tools, but less consistently the same logic. Digital activity is still frequently assessed in terms of scale: how widely a message travelled, how many people engaged with it, or how dominant it was within a given moment. These measures can shape perception. They can influence media coverage and create a sense of momentum. But they do not map cleanly onto the signals that Westminster responds to when decisions are made.</p>
+
+  <p>The consequence is a widening divergence between visibility and impact. Campaigns can dominate online conversation without materially affecting outcomes in Parliament. Conversely, activity that is less publicly visible can exert more direct influence where it intersects with political incentives—whether through constituency pressure, internal party dynamics or sustained engagement with decision-makers. This is not a new feature of British politics. But the expansion of digital communication has made the gap more visible.</p>
+
+  <p>For those engaged in UK politics, this raises a broader question about how influence should be understood in a digital environment. If attention is now abundant, its marginal value declines. What matters more is how that attention is organised, interpreted and translated into signals that the political system recognises. The experience of digital marketing points in one direction. But the underlying issue is not technological. It is structural—and, in Westminster systems in particular, rooted in how political decisions are made.</p>
+
+</div>
+
+    <div class="article-footer">
+      <p>For conversations about campaign strategy, digital infrastructure or public affairs campaigns, contact Rebecca.</p>
+      <a href="mailto:rebecca@blueskystrategy.co.uk?subject=Campaign%20enquiry" class="btn">Get in touch</a>
+    </div>
+
+  </article>
+</main>
+
+<footer>
+  <img src="https://blueskystrategy.co.uk/images/logoadjustedbs.png" alt="Blue Sky Strategy">
+  <p>© 2026 Blue Sky Strategy Ltd · Westminster, London · <a href="https://blueskystrategy.co.uk/privacy-policies.html">Privacy</a></p>
+</footer>
+
+<script>
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', function () {
+    navLinks.classList.toggle('active');
+  });
+}
+</script>
+
+</body>
+</html>
