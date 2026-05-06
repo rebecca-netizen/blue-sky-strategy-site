@@ -2,9 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://www.blueskystrategy.co.uk/</loc>
+    <loc>https://blueskystrategy.co.uk/</loc>
   </url>
 <url>
-    <loc>https://www.blueskystrategy.co.uk/privacy-policies.html</loc>
+    <loc>https://blueskystrategy.co.uk/privacy-policies.html</loc>
+  </url>
+  <url>
+    <loc>https://blueskystrategy.co.uk/campaign-insights.html</loc>
+  </url>
+  <url>
+    <loc>https://blueskystrategy.co.uk/insights/visibility-vs-influence.html</loc>
+  </url>
+  <url>
+    <loc>https://blueskystrategy.co.uk/insights/ai-standards-political-communication.html</loc>
+  </url>
+  <url>
+    <loc>https://blueskystrategy.co.uk/insights/polling-ai-uk-politics.html</loc>
   </url>
 </urlset>
